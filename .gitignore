@@ -1,3 +1,10 @@
+# Custom
+*.cbp
+*.depend
+*.layout
+bin/
+obj/
+
 # Prerequisites
 *.d
 
