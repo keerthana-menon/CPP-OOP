@@ -65,6 +65,7 @@ class TaskManager
 {
     private:
         std::map<int, Task> taskList;
+        bool emptyCheck() const;
     public:
         void createTask(std::string t, int i, std::string c);
         bool findTask(int d) const;

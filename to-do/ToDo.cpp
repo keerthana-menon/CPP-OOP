@@ -37,10 +37,22 @@ void clearInput()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+bool TaskManager::emptyCheck() const
+{
+    if(taskList.empty())
+    {
+        std::cout << "Empty List.\n";
+        linePrint();
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 void TaskManager::printTasks(int id) const
 {
-    // header();
-    // linePrint();
     std::cout << id << "\t" << std::setw(30) << taskList.at(id).getTaskName();
     std::cout << std::setw(30) << taskList.at(id).getCategory() << std::setw(20) << taskList.at(id).getPriority();
     std::cout << "\n";
@@ -56,6 +68,7 @@ void TaskManager::printTasks() const
         std::cout << std::setw(30) << iter->second.getCategory() << std::setw(20) << iter->second.getPriority();
         std::cout << "\n";
     }
+    
 }
 
 void TaskManager::createTask(std::string taskName, int priority, std::string category)
@@ -84,7 +97,7 @@ bool TaskManager::findTask(int id) const
     }
     else
     {
-        std::cout << "Task ID does not exist!" << "\n";
+        std::cout << "Task ID does not exist!\n";
         return 0;
     }
 }
@@ -168,50 +181,65 @@ void TaskManager::run()
             {
                 int i;
                 clearInput();
-                std::cout << "Enter the task ID: ";
-                std::cin >> i;
-                clearInput();
-                linePrint();
-                TaskManager::findTask(i);
-                linePrint();
+                if(!emptyCheck())
+                {
+                    std::cout << "Enter the task ID: ";
+                    std::cin >> i;
+                    clearInput();
+                    linePrint();
+                    TaskManager::findTask(i);
+                    linePrint();
+                }
                 break;
             }
             case 3: // Categorise tasks
             {
                 std::string c;
                 clearInput();
-                std::cout << "Enter the category to be viewed: ";
-                std::getline(std::cin, c);
-                linePrint();
-                TaskManager::categorise(c);
-                linePrint();
+                if(!emptyCheck())
+                {
+                    std::cout << "Enter the category to be viewed: ";
+                    std::getline(std::cin, c);
+                    linePrint();
+                    TaskManager::categorise(c);
+                    linePrint();
+                }
                 break;
             }
             case 4: // Display all tasks
             {
                 clearInput();
-                linePrint();
-                TaskManager::printTasks();
-                linePrint();
+                if(!emptyCheck())
+                {
+                    linePrint();
+                    TaskManager::printTasks();
+                    linePrint();
+                }
                 break;
             }
             case 5: // Priority-wise view
             {
                 clearInput();
-                linePrint();
-                TaskManager::sortPriorities();
-                linePrint();
+                if(!emptyCheck())
+                {
+                    linePrint();
+                    TaskManager::sortPriorities();
+                    linePrint();
+                }
                 break;
             }
             case 6: // Delete task
             {
                 int i;
                 clearInput();
-                std::cout << "Enter the ID of the task to be deleted: ";
-                std::cin >> i;
-                linePrint();
-                TaskManager::deleteTask(i);
-                linePrint();
+                if(!emptyCheck())
+                {
+                    std::cout << "Enter the ID of the task to be deleted: ";
+                    std::cin >> i;
+                    linePrint();
+                    TaskManager::deleteTask(i);
+                    linePrint();
+                }
                 break;
             }
             default :
