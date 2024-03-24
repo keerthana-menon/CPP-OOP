@@ -1,0 +1,2 @@
+# Convolution
+A simple C++ program that calculates the convolution of two arrays. Each array is modelled as an object of the `NumArray` class, which consists of a vector of floats. The convolution is implemented in an overloaded asterisk `*` operator function, and the result is displayed using the overloaded stream insertion `<<` operator.
